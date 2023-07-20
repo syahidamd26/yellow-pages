@@ -603,7 +603,15 @@ def menu_clear_n_backup():
                     elif clear_option == "No":
                         break
                     elif clear_option == "Yes":
-                        backup_data.extend(phone_number_list)
+                        list_no_backup = []
+                        if len(backup_data)!=0:
+                            for num in range(len(backup_data)):
+                                list_no_backup.append(backup_data[num]["noTelepon"])
+                            for no in range(len(phone_number_list)):
+                                if phone_number_list[no]["noTelepon"] not in list_no_backup:
+                                    backup_data.append(phone_number_list[no])
+                        else:
+                            backup_data.extend(phone_number_list)
                         phone_number_list.clear()
                         print("-----------------------------------------------------")
                         print("Semua data pada daftar nomor telepon berhasil dihapus")
