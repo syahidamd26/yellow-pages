@@ -509,7 +509,14 @@ def menu_delete():
                         elif delete_option == "No":
                             break
                         elif delete_option == "Yes":
-                            backup_data.append(phone_number_list[no_list])
+                            list_no_backup = []
+                            if len(backup_data)!=0:
+                                for num in range(len(backup_data)):
+                                    list_no_backup.append(backup_data[num]["noTelepon"])
+                                if phone_number_list[no_list]["noTelepon"] not in list_no_backup:
+                                        backup_data.append(phone_number_list[no_list])
+                            else:
+                                backup_data.append(phone_number_list[no_list])
                             del phone_number_list[no_list]
                             print("---------------------------------------------------------------------------")
                             print(f"Data dengan nomor {delete_value[0]['noTelepon'].strip()}, atas nama \"{delete_value[0]['nama'].strip()}\" berhasil dihapus")
